@@ -11,3 +11,5 @@ server.use(express.json());
 server.use(routes);
 
 server.listen(PORT);
+
+module.exports = server;
