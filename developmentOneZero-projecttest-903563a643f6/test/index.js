@@ -8,7 +8,7 @@
 //https://www.chaijs.com/plugins/chai-json-schema/
 //https://developer.mozilla.org/pt-PT/docs/Web/HTTP/Status (http codes)
 
-const app =  require('../src/index.js');
+const app =  require('../src/server');
 
 const assert = require('assert');
 const chai = require('chai')
@@ -60,7 +60,7 @@ describe('Testes da aplicaçao',  () => {
         });
     });
 
-    it('deveria ser uma lista vazia de usuarios', function (done) {
+    it('deveria ser uma lista vazia de usuarios', async function (done) {
         chai.request(app)
         .get('/users')
         .end(function (err, res) {
@@ -72,9 +72,15 @@ describe('Testes da aplicaçao',  () => {
     });
 
     it('deveria criar o usuario raupp', function (done) {
+        let user = {
+            nome: "raupp", 
+            email: "jose.raupp@devoz.com.br", 
+            idade: 35
+
+        }
         chai.request(app)
         .post('/user')
-        .send({nome: "raupp", email: "jose.raupp@devoz.com.br", idade: 35})
+        .send(user)
         .end(function (err, res) {
             expect(err).to.be.null;
             expect(res).to.have.status(201);
@@ -84,8 +90,9 @@ describe('Testes da aplicaçao',  () => {
     //...adicionar pelo menos mais 5 usuarios. se adicionar usuario menor de idade, deve dar erro. Ps: não criar o usuario naoExiste
 
     it('o usuario naoExiste não existe no sistema', function (done) {
+        let naoExiste = "naoExiste"
         chai.request(app)
-        .get('/user/naoExiste')
+        .get('/users/' + naoExiste)
         .end(function (err, res) {
             expect(err.response.body.error).to.be.equal('User not found'); //possivelmente forma errada de verificar a mensagem de erro
             expect(res).to.have.status(404);
@@ -95,8 +102,9 @@ describe('Testes da aplicaçao',  () => {
     });
 
     it('o usuario raupp existe e é valido', function (done) {
+        let nome = "raupp";
         chai.request(app)
-        .get('/user/raupp')
+        .get('/users/' + nome)
         .end(function (err, res) {
             expect(err).to.be.null;
             expect(res).to.have.status(200);
@@ -106,8 +114,9 @@ describe('Testes da aplicaçao',  () => {
     });
 
     it('deveria excluir o usuario raupp', function (done) {
+        let nome = "raupp";
         chai.request(app)
-        .delete('/user/raupp')
+        .delete('/user/delete/' + nome)
         .end(function (err, res) {
             expect(err).to.be.null;
             expect(res).to.have.status(200);
@@ -117,8 +126,9 @@ describe('Testes da aplicaçao',  () => {
     });
 
     it('o usuario raupp não deve existir mais no sistema', function (done) {
+        let nome = "raupp";
         chai.request(app)
-        .get('/user/raupp')
+        .get('/users/' + nome)
         .end(function (err, res) {
             expect(err).to.be.null;
             expect(res).to.have.status(200);
