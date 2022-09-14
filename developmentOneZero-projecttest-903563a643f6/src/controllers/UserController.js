@@ -1,6 +1,7 @@
+//CONTROLLERS, funçoes de store, delete, search e index
+
+
 const User = require('../model/User');
-
-
 
 module.exports={
 
@@ -57,7 +58,7 @@ module.exports={
             if(userExist){
                 return res.status(200).json(userExist);
             }else{
-                return res.status(404).json({User});
+                return res.status(404).json("User not found");
             }
         }catch(error){
             console.log(error);

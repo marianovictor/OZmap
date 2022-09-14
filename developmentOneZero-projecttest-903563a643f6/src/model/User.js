@@ -1,3 +1,4 @@
+//Define o minimo de campos que o usuário deve ter.
 const {Schema, Model, model } = require('mongoose');
 
 const UserSchema = new Schema({

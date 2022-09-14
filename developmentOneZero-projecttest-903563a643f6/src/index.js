@@ -1,4 +1,10 @@
-/*//Voce deve rodar os testes usando:  npm test
+/*
+
+
+-->>ANTIGO INDEX.JS<---
+
+
+//Voce deve rodar os testes usando:  npm test
 //Para testar a aplicação, rode: npm run dev
 
 //mais infos
