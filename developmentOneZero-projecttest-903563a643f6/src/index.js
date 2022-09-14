@@ -1,4 +1,4 @@
-//Voce deve rodar os testes usando:  npm test
+/*//Voce deve rodar os testes usando:  npm test
 //Para testar a aplicação, rode: npm run dev
 
 //mais infos
@@ -31,4 +31,4 @@ koa
 
 const server = koa.listen(PORT);
 
-module.exports = server;
+module.exports = server;*/

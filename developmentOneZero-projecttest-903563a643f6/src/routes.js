@@ -12,7 +12,7 @@ routes.get('/', (req, res) =>{
 routes.get('/users', UserController.index)
 routes.post('/user', UserController.store)
 routes.delete('/user/delete/:nome', UserController.delete)
-routes.get('/users/:nome', UserController.buscaNome);
+routes.get('/user/:nome', UserController.buscaNome);
 
 
 module.exports = routes;

@@ -60,7 +60,7 @@ describe('Testes da aplicaçao',  () => {
         });
     });
 
-    it('deveria ser uma lista vazia de usuarios', async function (done) {
+    it('deveria ser uma lista vazia de usuarios',  function (done) {
         chai.request(app)
         .get('/users')
         .end(function (err, res) {
@@ -92,7 +92,7 @@ describe('Testes da aplicaçao',  () => {
     it('o usuario naoExiste não existe no sistema', function (done) {
         let naoExiste = "naoExiste"
         chai.request(app)
-        .get('/users/' + naoExiste)
+        .get('/user/' + naoExiste)
         .end(function (err, res) {
             expect(err.response.body.error).to.be.equal('User not found'); //possivelmente forma errada de verificar a mensagem de erro
             expect(res).to.have.status(404);
@@ -104,7 +104,7 @@ describe('Testes da aplicaçao',  () => {
     it('o usuario raupp existe e é valido', function (done) {
         let nome = "raupp";
         chai.request(app)
-        .get('/users/' + nome)
+        .get('/user/' + nome)
         .end(function (err, res) {
             expect(err).to.be.null;
             expect(res).to.have.status(200);
@@ -128,7 +128,7 @@ describe('Testes da aplicaçao',  () => {
     it('o usuario raupp não deve existir mais no sistema', function (done) {
         let nome = "raupp";
         chai.request(app)
-        .get('/users/' + nome)
+        .get('/user/' + nome)
         .end(function (err, res) {
             expect(err).to.be.null;
             expect(res).to.have.status(200);

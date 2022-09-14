@@ -24,7 +24,15 @@ module.exports={
                 email, 
                 idade
             });
-            return res.status(201).json(user);
+            if(user.idade < 18){
+                return res.status(400).json({
+                    status:"Error",
+                    message:"O usuario precisa ter mais de 18 anos"
+                  });
+            }else{
+                return res.status(201).json(user);
+            }
+            
         }catch(err){
             console.log(err);
             return res.status(500).json(err);
@@ -49,7 +57,7 @@ module.exports={
             if(userExist){
                 return res.status(200).json(userExist);
             }else{
-                return res.status(200).json('User not found');
+                return res.status(404).json({User});
             }
         }catch(error){
             console.log(error);
