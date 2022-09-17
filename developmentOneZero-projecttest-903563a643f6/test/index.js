@@ -49,7 +49,6 @@ describe('Testes da aplicaçao',  () => {
         .end(function (err, res) {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
-        //expect(res.body.rows).to.eql([]);
         done();
         });
     });
